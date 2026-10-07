@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘뭐먹지 - 회원가입</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cafe: {
+                            50: '#fcfbfa',
+                            100: '#f5f2ed',
+                            200: '#e8e0d5',
+                            300: '#d7c9b8',
+                            400: '#bfa892',
+                            500: '#a3876d',
+                            600: '#8c6e54',
+                            700: '#70543e',
+                            800: '#594231',
+                            900: '#423124'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 부드러운 스크롤 및 기본 스타일 설정 */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #fcfbfa;
+            color: #423124;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(232, 224, 213, 0.7);
+        }
+        /* 따뜻한 식탁 배경 적용 및 오버레이 */
+        .auth-bg {
+            background-image: linear-gradient(rgba(66, 49, 36, 0.5), rgba(66, 49, 36, 0.6)), url('https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-cafe-200 selection:text-cafe-950 flex flex-col min-h-screen">
+
+    <!-- 상단 네비게이션 영역 -->
+    <header class="sticky top-0 z-50 glass-card border-b border-cafe-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-cafe-700 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-utensils text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-cafe-800">오늘뭐먹지</span>
+                    <span class="block text-xs text-cafe-500 font-medium">냉장고를 부탁해 AI</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-cafe-700">
+                <a href="/" class="hover:text-cafe-900 transition-colors">홈으로</a>
+                <a href="/login" class="hover:text-cafe-900 transition-colors">로그인</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 영역 (Auth Background) -->
+    <main class="flex-1 auth-bg flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md">
+            <div class="glass-card rounded-3xl p-8 sm:p-10 shadow-2xl space-y-8">
+                
+                <!-- 환영 및 안내 헤더 -->
+                <div class="text-center space-y-2">
+                    <div class="w-14 h-14 rounded-2xl bg-cafe-700 text-white flex items-center justify-center text-2xl mx-auto shadow-lg mb-4">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <h1 class="text-3xl font-extrabold text-cafe-900 tracking-tight">회원가입</h1>
+                    <p class="text-sm text-cafe-600">오늘뭐먹지와 함께 나만의 맞춤 레시피를 시작해보세요.</p>
+                </div>
+
+                <!-- 기존 Flask 폼 구조 유지 (method="POST") -->
+                <form method="POST" class="space-y-6">
+                    
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-cafe-800" for="username">
+                            <i class="fa-regular fa-user text-cafe-600 mr-1.5"></i> 아이디
+                        </label>
+                        <input type="text" id="username" name="username" required placeholder="사용하실 아이디를 입력하세요"
+                            class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-cafe-300 text-cafe-900 focus:outline-none focus:ring-2 focus:ring-cafe-500 shadow-sm text-sm transition-all">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-cafe-800" for="password">
+                            <i class="fa-solid fa-lock text-cafe-600 mr-1.5"></i> 비밀번호
+                        </label>
+                        <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요"
+                            class="w-full px-4 py-3.5 rounded-2xl bg-white/90 border border-cafe-300 text-cafe-900 focus:outline-none focus:ring-2 focus:ring-cafe-500 shadow-sm text-sm transition-all">
+                    </div>
+
+                    <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-cafe-700 hover:bg-cafe-800 text-white font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 active:scale-95">
+                        <i class="fa-solid fa-check"></i> 회원가입
+                    </button>
+                </form>
+
+                <!-- 로그인 안내 링크 -->
+                <div class="text-center pt-2 border-t border-cafe-200">
+                    <a href="/login" class="text-sm font-semibold text-cafe-700 hover:text-cafe-900 hover:underline transition-colors inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i> 이미 계정이 있으신가요? 로그인하기
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-cafe-900 text-cafe-200 py-8 border-t border-cafe-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-cafe-400">
+            &copy; 2026 오늘뭐먹지. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
